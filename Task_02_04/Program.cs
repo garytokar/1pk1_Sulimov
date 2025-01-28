@@ -10,20 +10,27 @@ namespace Task_02_04
         //на текущую дату и выведите соответствующее сообщение об этом
         static void Main(string[] args)
         {
-            Console.WriteLine("Введите год рождения:");
+            Console.Write("Введите год рождения: ");
             int year = int.Parse(Console.ReadLine());
-            Console.WriteLine("Введите месяц рождения:");
+            Console.Write("Введите месяц рождения (1-12): ");
             int month = int.Parse(Console.ReadLine());
-            Console.WriteLine("Введите день рождения:");
+            Console.Write("Введите день рождения: ");
             int day = int.Parse(Console.ReadLine());
-
-            DateTime today = DateTime.Now;
-            int delta_day = today.Day - day;
-            int delta_month = today.Month - month;
-            if (delta_day < 0) delta_month--;
-            int delta_year = today.Year - year;
-            if (delta_month < 0) delta_year--;
-            Console.WriteLine(delta_year >= 18 ? "Пользователь является совершеннолетним" : "Пользователь не является совершеннолетним");
+            DateTime birthDate = new DateTime(year, month, day);
+            DateTime currentDate = DateTime.Now;
+            int age = currentDate.Year - birthDate.Year;
+            if (currentDate < birthDate.AddYears(age))
+            {
+                age--;
+            }
+            if (age >= 18)
+            {
+                Console.WriteLine("Вы совершеннолетний.");
+            }
+            else
+            {
+                Console.WriteLine("Вы несовершеннолетний.");
+            }
         }
     }
 }
